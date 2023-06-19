@@ -1,13 +1,15 @@
 <script>
     import SingleCard from './SingleCard.vue';
     import axios from 'axios';
+    import {store} from '../store.js';
 
     export default{
         name:'CardsContainer',
         data(){
             return {
                 apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
-                cardList: [],               
+                cardList: [],         
+                store,      
             }
         },
 
@@ -18,8 +20,10 @@
         created(){
             axios.get(this.apiUrl)
             .then( (response) => {
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 this.cardList = response.data.data;
+                this.store.count = this.cardList.length;
+                console.log(this.store.count);
             })
             .catch(function (error) {
                 console.log(error);
