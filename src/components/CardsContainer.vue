@@ -20,10 +20,9 @@
         created(){
             axios.get(this.apiUrl)
             .then( (response) => {
-                // console.log(response.data.data);
                 this.cardList = response.data.data;
                 this.store.count = this.cardList.length;
-                console.log(this.store.count);
+                this.store.loadingState = false;
             })
             .catch(function (error) {
                 console.log(error);
@@ -33,7 +32,12 @@
 </script>
 
 <template>
-    <section>
+    <section v-if="store.loadingState === true">
+        <h1>
+            Loading cards ...
+        </h1>
+    </section>
+    <section v-else>
         <SingleCard v-for="cardObj in cardList"
             :cardElement = "cardObj"
         />
