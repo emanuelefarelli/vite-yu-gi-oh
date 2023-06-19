@@ -27,9 +27,9 @@
 
 <style lang="scss" scoped>
     div.card{
-        height: 400px;
-        width: calc(100% / 5);
-        margin: 0.5rem;
+        height: 500px;
+        width: calc((100% / 5) - 2rem);
+        margin: 1rem;
         text-align: center;
         background-color: #d48f38;
         img{
