@@ -30,7 +30,9 @@
 
 <template>
     <section>
-        <SingleCard/>
+        <SingleCard v-for="cardObj in cardList"
+            :cardElement = "cardObj"
+        />
     </section>
 </template>
 
