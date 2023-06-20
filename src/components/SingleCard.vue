@@ -36,8 +36,9 @@
             width: 100%;
         }
         h1,
-        p{
-            margin-bottom: 0.5rem;
+        p,
+        img{
+            margin-bottom: 1rem;
         }
         h1{
             font-size: 1.2rem;

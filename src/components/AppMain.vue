@@ -1,28 +1,57 @@
 <script>
     import CardsContainer from './CardsContainer.vue';
+    import AppSearchbar from './AppSearchbar.vue';
+    import axios from 'axios';
     import {store} from '../store';
 
     export default{
         name:'AppMain',
         data(){
             return {
+                apiUrl: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+                cardList: [],  
                 store,
             }
         },
         components:{
-            CardsContainer
+            CardsContainer,
+            AppSearchbar
+        },
+        methods: {
+            searchedCard(needle){
+                axios.get(this.apiUrl, {
+                    params: {
+                        archetype: needle
+                    }
+                })
+                .then( (response) => {
+                    this.cardList = response.data.data;
+                    console.log(response.data.data);
+                    this.store.count = this.cardList.length;
+                    this.store.loadingState = false;
+                 })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            }
+        },
+        created(){
+            this.searchedCard()
         }
+
     }
 </script>
 
 <template>
+
     <main>
-        <div>
+        <AppSearchbar @searched="searchedCard"/>
+        <div class="found-number-cards">
             <h2>
                 found {{ this.store.count }} cards:
             </h2>
         </div>
-        <CardsContainer/>
+        <CardsContainer :cardList="cardList"/>
     </main>
 </template>
 
@@ -34,7 +63,7 @@
         padding: 2rem;
         margin: 0 auto;
         margin-top: 3rem;
-        div{
+        div.found-number-cards{
             background-color: #212529;
             color: white;
             @include flex(row,flex-start,center);
