@@ -33,5 +33,13 @@
 </template>
 
 <style lang="scss" scoped>
-    
+    div.input-group{
+        display: flex;
+        justify-content: center;
+        padding: 2rem;
+        label,
+        select{
+            padding: 0.5rem;
+        }
+    }
 </style>

@@ -28,7 +28,6 @@
                     this.cardList = response.data.data;
                     console.log(response.data.data);
                     this.store.count = this.cardList.length;
-                    this.store.loadingState = false;
                  })
                 .catch(function (error) {
                     console.log(error);

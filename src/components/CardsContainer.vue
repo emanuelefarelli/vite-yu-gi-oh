@@ -1,12 +1,11 @@
 <script>
     import SingleCard from './SingleCard.vue';
-    import {store} from '../store.js';
 
     export default{
         name:'CardsContainer',
         data(){
             return {       
-                store,      
+
             }
         },
 
@@ -21,12 +20,7 @@
 </script>
 
 <template>
-    <section v-if="store.loadingState === true">
-        <h1>
-            Loading cards ...
-        </h1>
-    </section>
-    <section v-else>
+    <section>
         <SingleCard v-for="cardObj in cardList"
             :cardElement = "cardObj"
         />

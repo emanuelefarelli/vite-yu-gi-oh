@@ -22,12 +22,15 @@
         <p>
             {{ cardElement.race }}
         </p>
+        <p>
+            {{ cardElement.archetype }}
+        </p>
     </div>
 </template>
 
 <style lang="scss" scoped>
     div.card{
-        height: 500px;
+        height: 520px;
         width: calc((100% / 5) - 2rem);
         margin: 1rem;
         text-align: center;
