@@ -26,7 +26,7 @@
     <div class="input-group">
         <label for="archetypes">Archetypes:</label>
 
-        <select name="archetypes" id="archetypes" v-model="archetypeName" @click="$emit('searched', archetypeName)">
+        <select name="archetypes" id="archetypes" v-model="archetypeName" @change="$emit('searched', archetypeName)">
             <option v-for="archetypes in archetypeList" :value="archetypes.archetype_name">{{ archetypes.archetype_name }}</option>
         </select>
     </div>
