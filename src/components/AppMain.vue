@@ -28,6 +28,7 @@
                     this.cardList = response.data.data;
                     console.log(response.data.data);
                     this.store.count = this.cardList.length;
+                    this.store.loadingState = false;
                  })
                 .catch(function (error) {
                     console.log(error);
@@ -43,7 +44,16 @@
 
 <template>
 
-    <main>
+    <main v-if="store.loadingState === true">
+        <AppSearchbar @searched="searchedCard"/>
+        <div class="found-number-cards">
+            <h2>
+                Loading...
+            </h2>
+        </div>
+    </main>
+
+    <main v-else>
         <AppSearchbar @searched="searchedCard"/>
         <div class="found-number-cards">
             <h2>
